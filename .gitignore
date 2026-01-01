@@ -1,0 +1,13 @@
+# Configuración sensible
+**/appsettings.json
+
+# .NET
+**/bin/
+**/obj/
+
+# Visual Studio
+.vs/
+
+# Angular
+**/node_modules/
+**/dist/
