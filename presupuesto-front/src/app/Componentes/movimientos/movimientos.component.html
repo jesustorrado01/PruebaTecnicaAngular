@@ -1,0 +1,36 @@
+<div class="tabla-contenedor">
+
+  <!-- ENCABEZADO -->
+  <div class="header-container">
+    <div class="header-content">
+      <h1 class="titulo">Gestión de Presupuestos y registro de Gastos</h1>
+      <p class="subtitulo">Administra y visualiza la información de tus presupuestos y gastos</p>
+    </div>
+
+    <div class="acciones-header">
+      <button
+        mat-raised-button
+        color="primary"
+        matTooltip="Ver Presupuestos"
+        routerLink="ver-presupuestos">
+        <mat-icon>table_view</mat-icon>
+        Presupuesto
+      </button>
+
+      <button
+        mat-stroked-button
+        color="accent"
+        matTooltip="Ver registro de gastos"
+        class="btn-secundario mt-3"
+        routerLink="ver-gastos">
+        <mat-icon>list_alt</mat-icon>
+        Registro de gastos
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

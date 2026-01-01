@@ -1,0 +1,134 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.tabla-contenedor {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- HEADER --- */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.titulo {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  color: #2c3e50; /* Color oscuro elegante */
+  letter-spacing: -0.5px;
+}
+
+.subtitulo {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin: 4px 0 0 0;
+}
+
+/* --- TABLA WRAPPER --- */
+.table-wrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+/* --- ESTILOS DE CELDAS --- */
+th.mat-header-cell {
+  background-color: #f8f9fa;
+  color: #5f6368;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+td.mat-cell {
+  padding: 12px 24px;
+  color: #333;
+  font-size: 14px;
+  vertical-align: middle;
+  border-bottom-color: #f0f0f0;
+}
+
+/* Hover Effect */
+.row-hover:hover {
+  background-color: #fcfcfc; /* Gris muy sutil al pasar el mouse */
+  transition: background-color 0.2s ease;
+}
+
+/* --- COLUMNAS ESPECÍFICAS --- */
+
+/* Nombre principal más visible */
+.main-text {
+  color: #2c3e50;
+  font-size: 15px;
+}
+
+.font-weight-bold {
+  font-weight: 500;
+}
+
+.text-muted {
+  color: #757575;
+  font-size: 13px;
+}
+
+/* Estilo tipo "Pill" o "Badge" para la columna TIPO */
+.badge-chip {
+  background-color: #e8f5e9; /* Verde muy claro */
+  color: #2e7d32;           /* Verde oscuro */
+  padding: 4px 10px;
+  border-radius: 16px;      /* Bordes muy redondeados */
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+  border: 1px solid rgba(46, 125, 50, 0.1);
+}
+
+/* --- ACCIONES --- */
+.text-right {
+  text-align: right;
+  padding-right: 32px !important;
+}
+
+.actions-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Para cuando no hay datos */
+.no-data-cell {
+  text-align: center;
+  padding: 32px;
+  color: #999;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  /* En móviles, ocultamos la descripción para ahorrar espacio si es necesario */
+  .mat-column-descripcion {
+    display: none;
+  }
+}

@@ -1,0 +1,189 @@
+<div class="page-container">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Crear un nuevo gasto</h1>
+      <p class="page-subtitle">Registra los detalles de tu gasto y sus conceptos asociados</p>
+    </div>
+  </div>
+
+  <!-- Contenido del formulario -->
+  <div class="page-content">
+    <form [formGroup]="formGasto" class="form-container">
+
+      <!-- Sección: Información General -->
+      <div class="form-section">
+        <h3 class="section-title">
+          <mat-icon class="section-icon">info</mat-icon>
+          Información General
+        </h3>
+
+        <div class="form-grid">
+          <!-- Fecha -->
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="custom-field">
+              <mat-label>Fecha del gasto</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="fecha">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-icon matPrefix class="field-icon">event</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <!-- Fondo monetario -->
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="custom-field">
+              <mat-label>Fondo Monetario</mat-label>
+              <mat-select formControlName="idFondoMonetario">
+                <mat-option *ngFor="let fondo of fondoMonetarioListado"
+                            [value]="fondo.idFondoMonetario">
+                  {{ fondo.nombre }}
+                </mat-option>
+              </mat-select>
+              <mat-icon matPrefix class="field-icon">account_balance_wallet</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <!-- Nombre comercio -->
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="custom-field">
+              <mat-label>Nombre del comercio</mat-label>
+              <input matInput formControlName="nombreComercio" placeholder="Ej: Supermercado XYZ">
+              <mat-icon matPrefix class="field-icon">store</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <!-- Tipo Documento -->
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="custom-field">
+              <mat-label>Tipo de documento</mat-label>
+              <mat-select formControlName="tipoDocumento">
+                <mat-option value="Factura">Factura</mat-option>
+                <mat-option value="Comprobante">Comprobante</mat-option>
+                <mat-option value="Otro">Otro</mat-option>
+              </mat-select>
+              <mat-icon matPrefix class="field-icon">description</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Observaciones (ancho completo) -->
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="custom-field">
+            <mat-label>Observaciones (opcional)</mat-label>
+            <textarea
+              matInput
+              formControlName="observaciones"
+              rows="3"
+              placeholder="Agrega cualquier información adicional..."></textarea>
+            <mat-icon matPrefix class="field-icon description-icon">notes</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Sección: Detalles del Gasto -->
+      <div class="form-section detalles-section">
+        <div class="section-header">
+          <div class="section-header-left">
+            <h3 class="section-title">
+              <mat-icon class="section-icon">receipt_long</mat-icon>
+              Detalles del gasto
+            </h3>
+            <p class="section-description">Se necesita como mínimo un detalle de gasto</p>
+          </div>
+          <button
+            mat-raised-button
+            color="primary"
+            class="add-button"
+            type="button"
+            (click)="agregarDetalle()">
+            <mat-icon>add</mat-icon>
+            Agregar detalle
+          </button>
+        </div>
+
+        <div formArrayName="detalles" class="detalles-container">
+          <div
+            *ngFor="let detalle of detalles.controls; let i = index"
+            [formGroupName]="i"
+            class="detalle-card"
+          >
+            <div class="detalle-header">
+              <span class="detalle-number">Detalle #{{ i + 1 }}</span>
+              <button
+                mat-icon-button
+                color="warn"
+                class="delete-button"
+                type="button"
+                (click)="eliminarDetalle(i)"
+                [disabled]="detalles.controls.length === 1"
+                matTooltip="Eliminar detalle">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+
+            <div class="detalle-content">
+              <!-- Tipo de gasto -->
+              <div class="form-group">
+                <mat-form-field appearance="outline" class="custom-field">
+                  <mat-label>Tipo de Gasto</mat-label>
+                  <mat-select formControlName="idTipoGasto">
+                    <mat-option *ngFor="let gasto of tipoGastosListado"
+                                [value]="gasto.idTipoGasto">
+                      {{ gasto.nombre }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-icon matPrefix class="field-icon">category</mat-icon>
+                </mat-form-field>
+              </div>
+
+              <!-- Monto -->
+              <div class="form-group">
+                <mat-form-field appearance="outline" class="custom-field">
+                  <mat-label>Monto</mat-label>
+                  <input matInput formControlName="monto">
+                  <span matPrefix class="currency-prefix">$&nbsp;</span>
+                  <mat-icon matPrefix class="field-icon money-icon">payments</mat-icon>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <!-- Estado vacío -->
+          <div class="empty-detalles" *ngIf="detalles.controls.length === 0">
+            <mat-icon class="empty-icon">receipt</mat-icon>
+            <p class="empty-text">No hay detalles agregados</p>
+            <button
+              mat-stroked-button
+              color="primary"
+              type="button"
+              (click)="agregarDetalle()">
+              <mat-icon>add</mat-icon>
+              Agregar primer detalle
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- Acciones fijas en la parte inferior -->
+  <div class="page-actions">
+    <div class="actions-container">
+      <button mat-button class="cancel-button" [routerLink]="['/movimientos/ver-gastos']">
+          <mat-icon>close</mat-icon>
+          Cancelar
+      </button>
+      <button mat-raised-button
+        color="primary"
+        class="save-button"
+        (click)="crearGasto()"
+        [disabled]="formGasto.invalid"
+      >
+        <mat-icon>check</mat-icon>
+        Crear gasto
+      </button>
+    </div>
+  </div>
+</div>

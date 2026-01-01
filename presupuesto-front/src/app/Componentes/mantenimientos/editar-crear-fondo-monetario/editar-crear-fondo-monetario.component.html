@@ -1,0 +1,59 @@
+<div class="dialog-container">
+  <!-- Header con diseño limpio -->
+  <div class="dialog-header">
+    <h2 mat-dialog-title class="dialog-title">{{ tituloAccion }} fondo monetario</h2>
+    <button mat-icon-button class="close-button" (click)="cancelar()" aria-label="Cerrar">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Contenido del formulario -->
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="formFondoMonetario" class="form-container">
+
+      <input type="hidden" formControlName="idFondoMonetario">
+
+      <!-- Tipo -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="custom-field">
+          <mat-label>Tipo fondo monetario</mat-label>
+          <input matInput formControlName="nombre" placeholder="Ej: Efectivo">
+          <mat-icon matPrefix class="field-icon">badge</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <!-- Nombre -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="custom-field">
+          <mat-label>Nombre del fondo monetario</mat-label>
+          <input matInput formControlName="nombre" placeholder="Ej: BBVA">
+          <mat-icon matPrefix class="field-icon">label</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <!-- Descripción -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="custom-field">
+          <mat-label>Descripción</mat-label>
+          <textarea
+            matInput
+            rows="3"
+            formControlName="descripcion"
+            placeholder="Agrega detalles sobre este fondo monetario..."></textarea>
+        </mat-form-field>
+      </div>
+
+    </form>
+  </mat-dialog-content>
+
+  <!-- Acciones con diseño mejorado -->
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-button class="cancel-button" (click)="cancelar()">
+      Cancelar
+    </button>
+    <button mat-raised-button color="primary" class="save-button" (click)="accionPrincipal()">
+      <mat-icon>check</mat-icon>
+      {{ tituloAccion }}
+    </button>
+  </mat-dialog-actions>
+</div>

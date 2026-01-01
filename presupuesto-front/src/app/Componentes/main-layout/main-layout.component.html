@@ -1,0 +1,32 @@
+<mat-toolbar color="primary" class="navbar-modern">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <mat-icon class="brand-icon">account_balance_wallet</mat-icon>
+      <span class="brand-text">Presupuesto Personal</span>
+    </div>
+
+    <nav class="navbar-menu">
+      <button mat-button routerLink="/mantenimientos" routerLinkActive="active-link">
+        <mat-icon>settings</mat-icon>
+        <span>Mantenimiento</span>
+      </button>
+      <button mat-button routerLink="/movimientos" routerLinkActive="active-link">
+        <mat-icon>swap_horiz</mat-icon>
+        <span>Movimientos</span>
+      </button>
+      <button mat-button routerLink="/consultas" routerLinkActive="active-link">
+        <mat-icon>assessment</mat-icon>
+        <span>Reportes</span>
+      </button>
+    </nav>
+
+    <button mat-stroked-button class="logout-btn" (click)="cerrarSesion()">
+      <mat-icon>logout</mat-icon>
+      <span>Salir</span>
+    </button>
+  </div>
+</mat-toolbar>
+
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,114 @@
+<div class="tabla-contenedor">
+  <!-- Header mejorado -->
+  <div class="header-container">
+    <div class="header-content">
+      <h1 class="titulo">Consultas y reportes de presupuestos</h1>
+      <p class="subtitulo">Visualiza la información de tus movimientos económicos</p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="content-wrapper">
+    <!-- Formulario de búsqueda -->
+    <div class="search-section">
+      <form [formGroup]="formConsultas" class="search-form">
+
+        <mat-form-field appearance="outline" class="custom-field">
+          <mat-label>Fecha inicio</mat-label>
+          <input matInput type="date" formControlName="fechaInicio">
+          <mat-icon matPrefix class="field-icon">calendar_today</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="custom-field">
+          <mat-label>Fecha fin</mat-label>
+          <input matInput type="date" formControlName="fechaFin">
+          <mat-icon matPrefix class="field-icon">event</mat-icon>
+        </mat-form-field>
+
+        <button
+          class="search-button"
+          mat-raised-button
+          color="primary"
+          (click)="cargarReportes()"
+          type="submit"
+          matTooltip="Buscar movimientos">
+          <mat-icon>search</mat-icon>
+          <span class="button-text">Buscar</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Tarjetas de movimientos -->
+    <div class="tarjetas" *ngIf="movimientos.length > 0">
+      <mat-card *ngFor="let m of movimientos" class="card-movimiento">
+
+        <div class="card-header">
+          <div class="card-type-badge" [class.ingreso]="m.tipoMovimiento === 'Ingreso'" [class.egreso]="m.tipoMovimiento === 'Egreso'">
+            <mat-icon>{{ m.tipoMovimiento === 'Ingreso' ? 'arrow_downward' : 'arrow_upward' }}</mat-icon>
+            {{ m.tipoMovimiento }}
+          </div>
+          <div class="card-date">
+            <mat-icon class="date-icon">schedule</mat-icon>
+            {{ m.fecha | date:'dd/MM/yyyy' }}
+          </div>
+        </div>
+
+        <mat-card-content class="card-body">
+          <div class="monto-principal">
+            ${{ m.monto | number:'1.2-2' }}
+          </div>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <mat-icon class="info-icon">account_balance_wallet</mat-icon>
+              <div class="info-content">
+                <span class="info-label">Fondo</span>
+                <span class="info-value">{{ m.fondoMonetario }}</span>
+              </div>
+            </div>
+
+            <div class="info-item" *ngIf="m.tipoGasto">
+              <mat-icon class="info-icon">label</mat-icon>
+              <div class="info-content">
+                <span class="info-label">Tipo Gasto</span>
+                <span class="info-value">{{ m.tipoGasto }}</span>
+              </div>
+            </div>
+
+            <div class="info-item" *ngIf="m.nombreComercio">
+              <mat-icon class="info-icon">store</mat-icon>
+              <div class="info-content">
+                <span class="info-label">Comercio</span>
+                <span class="info-value">{{ m.nombreComercio }}</span>
+              </div>
+            </div>
+
+            <div class="info-item" *ngIf="m.tipoDocumento">
+              <mat-icon class="info-icon">description</mat-icon>
+              <div class="info-content">
+                <span class="info-label">Documento</span>
+                <span class="info-value">{{ m.tipoDocumento }}</span>
+              </div>
+            </div>
+
+            <div class="info-item full-width" *ngIf="m.observaciones">
+              <mat-icon class="info-icon">notes</mat-icon>
+              <div class="info-content">
+                <span class="info-label">Observaciones</span>
+                <span class="info-value">{{ m.observaciones }}</span>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+
+    <!-- Estado vacío -->
+    <div class="empty-state" *ngIf="movimientos.length === 0">
+      <mat-icon class="empty-icon">inbox</mat-icon>
+      <p class="empty-title">No hay movimientos</p>
+      <p class="empty-subtitle">Selecciona un rango de fechas y presiona buscar</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.tabla-contenedor {
+  padding: 24px;
+  max-width: 1200px; /* Evita que se estire demasiado en pantallas gigantes */
+  margin: 0 auto;
+}
+
+/* --- HEADER --- */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.titulo {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.subtitulo {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin: 4px 0 0 0;
+}
+
+/* --- TABLA --- */
+.table-wrapper {
+  border-radius: 8px; /* Bordes redondeados modernos */
+  overflow: hidden; /* Para que el borde redondeado funcione */
+  background: white;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+/* Estilos de celdas generales */
+th.mat-header-cell {
+  background-color: #f8f9fa; /* Fondo gris muy claro para encabezado */
+  color: #5f6368;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 16px 24px;
+}
+
+td.mat-cell {
+  padding: 12px 24px;
+  color: #333;
+  font-size: 14px;
+  border-bottom-color: #eee; /* Líneas más sutiles */
+}
+
+/* Efecto Hover en filas */
+.row-hover:hover {
+  background-color: #f5f5f5;
+  transition: background-color 0.2s ease;
+}
+
+/* --- COLUMNAS ESPECÍFICAS --- */
+
+/* Badge para el código (opcional, se ve muy pro) */
+.badge-codigo {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.font-weight-bold {
+  font-weight: 500;
+}
+
+.text-muted {
+  color: #666;
+}
+
+/* --- ACCIONES --- */
+.text-center {
+  text-align: right; /* O center, según gusto */
+  padding-right: 32px !important;
+}
+
+.actions-container {
+  display: flex;
+  justify-content: flex-end; /* Alinea los botones a la derecha */
+  gap: 4px; /* Espacio pequeño entre iconos */
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .actions-container {
+    justify-content: flex-start;
+  }
+}

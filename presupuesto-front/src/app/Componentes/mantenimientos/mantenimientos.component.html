@@ -1,0 +1,35 @@
+<div class="tabla-contenedor">
+
+  <!-- ENCABEZADO -->
+  <div class="header-container">
+    <div class="header-content">
+      <h1 class="titulo">Gestión de Fondos y tipos de gastos</h1>
+      <p class="subtitulo">Administra y visualiza la información de tus fondos y tipos de gastos</p>
+    </div>
+
+    <div class="acciones-header">
+      <button
+        mat-raised-button
+        color="primary"
+        matTooltip="Ver Tipo de Gasto"
+        routerLink="tipo-gasto">
+        <mat-icon>table_view</mat-icon>
+        Tipos de gasto
+      </button>
+
+      <button
+        mat-stroked-button
+        color="accent"
+        class="btn-secundario mt-3"
+        routerLink="fondos-monetarios">
+        <mat-icon>account_balance</mat-icon>
+        Fondos monetarios
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
